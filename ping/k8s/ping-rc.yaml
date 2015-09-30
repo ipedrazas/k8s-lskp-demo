@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ping
+  labels:
+    name: ping
+spec:
+  replicas: 1
+  selector:
+    name: ping
+  template:
+    metadata:
+      labels:
+        name: ping
+    spec:
+      containers:
+      - name: ping
+        image: ipedrazas/ping
+        ports:
+        - containerPort: 8080

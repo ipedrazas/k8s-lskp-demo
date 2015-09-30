@@ -22,3 +22,6 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+ping/ping
+ping-redis/ping-redis
