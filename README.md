@@ -25,15 +25,15 @@ The kubernetes artifacts are in a folder called `k8s`. There are 3 files:
 
 Let's create the replication controller:
 
-    `kubectl create -f k8s/ping-rc.yaml`
+    kubectl create -f k8s/ping-rc.yaml
 
 Now, we expose the container usinga  service:
 
-    `kubectl create -f k8s/ping-service.yaml`
+    kubectl create -f k8s/ping-service.yaml
 
 To test our service, we need to get the endpoint, to do that, execute this command:
 
-    `kubectl describe service ping`
+    kubectl describe service ping
 
 You should have something like:
 
@@ -45,7 +45,7 @@ Labels:         name=ping
 Selector:       name=ping
 Type:           LoadBalancer
 IP:         10.0.142.98
-LoadBalancer Ingress:   a626b1846676611e5b34e06250624b2f-47645420.eu-west-1.elb.amazonaws.com
+LoadBalancer Ingress:   a626b1846676611e5b34e06250624b2f.eu-west-1.elb.amazonaws.com
 Port:           <unnamed>   80/TCP
 NodePort:       <unnamed>   31970/TCP
 Endpoints:      10.244.3.3:8080
@@ -53,8 +53,8 @@ Session Affinity:   None
 No events.
 ```
 
-where `a626b1846676611e5b34e06250624b2f-47645420.eu-west-1.elb.amazonaws.com` is our load balancer. If you do
+where `a626b1846676611e5b34e06250624b2f.eu-west-1.elb.amazonaws.com` is our load balancer. If you do
 
-    `curl a626b1846676611e5b34e06250624b2f-47645420.eu-west-1.elb.amazonaws.com`
+    curl a626b1846676611e5b34e06250624b2f.eu-west-1.elb.amazonaws.com
 
 you should get a `ping!` response
