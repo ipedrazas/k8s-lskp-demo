@@ -1,4 +1,4 @@
-# Kubernetes Landscape Demo
+# Kubernetes Introduction
 
 
 Running applications in containers is easy. Running applications in Kubernetes is, once you know how the system works, relatively easily.
