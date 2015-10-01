@@ -50,4 +50,3 @@ func main() {
     http.HandleFunc("/", pingServer)
     log.Fatal(http.ListenAndServe(":8080", nil))
 }
-

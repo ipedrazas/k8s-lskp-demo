@@ -1,4 +1,3 @@
-
 # Docker From scratch is empty,
 # there are no libraries and no loadpath.
 # We have to statically compile our app with all libraries built in:
