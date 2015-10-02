@@ -2,15 +2,14 @@
 
 
 Running applications in containers is easy. Running applications in Kubernetes is, once you know how the system works, relatively easily.
+
 Managing applications is always hard regardless of where and how you run them.
 
-This repo contains a few examples of code, containers and kubernetes artifacts.
+This repo contains a few examples of code, containers and kubernetes artifacts to help to understand the concepts behind kubernetes.
 
-* [Ping](ping): a simple http endpoint
-* [PingPodRedis](pingpodredis): a simple http endpoint that reads & writes to a Redis database. Both containers are in a Pod.
-* [Ping-redis](ping-redis):  a simple http endpoint that reads & writes to a Redis database. It runs on different Pods using an internal service.
-
-
+* [Ping](ping): a simple http endpoint. You can see the difference of names, labels and selectors, and how they work.
+* [PingPodRedis](pingpodredis): a simple http endpoint that reads & writes to a Redis database. Both containers are in a Pod. State is not maintained.
+* [Ping-redis](ping-redis):  a simple http endpoint that reads & writes to a Redis database. It runs on different Pods using an internal service. State is not maintained either.
 
 
 
