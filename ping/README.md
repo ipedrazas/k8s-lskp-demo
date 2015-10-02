@@ -53,3 +53,65 @@ where `a626b1846676611e5b34e06250624b2f.eu-west-1.elb.amazonaws.com` is our load
     curl a626b1846676611e5b34e06250624b2f.eu-west-1.elb.amazonaws.com
 
 you should get a `ping!` response
+
+
+# How names, labels and selectors work?
+
+Let's create the different components:
+
+Replication controller plus pod:
+
+        -> % kubectl create -f k8s/ping-rc.yaml
+        replicationcontrollers/pingrcname
+
+Service that exposes that replication controller
+
+        -> % kubectl create -f k8s/ping-service.yaml
+        services/pingsvcname
+
+Now, let's look at the pods we have:
+
+        -> % kubectl get pods
+        NAME               READY     STATUS    RESTARTS   AGE
+        pingrcname-jiw6h   1/1       Running   0          12s
+
+        -> % kubectl get rc
+        CONTROLLER   CONTAINER(S)    IMAGE(S)         SELECTOR            REPLICAS
+        pingrcname   pingcontainer   ipedrazas/ping   name=pingpodlabel   1
+
+Note that in our [ping-rc.yaml](ping-rc.yaml) we have given the name `pingrcname` to the replication controller and we have created a label `name: pingrc`
+
+        apiVersion: v1
+        kind: ReplicationController
+        metadata:
+          name: pingrcname
+          labels:
+            name: pingrc
+        spec:
+          replicas: 1
+          selector:
+            name: pingpodlabel
+          template:
+            metadata:
+              labels:
+                name: pingpodlabel
+            spec:
+              containers:
+              - name: pingcontainer
+                image: ipedrazas/ping
+                ports:
+                - containerPort: 8080
+
+We can see that the name of our RC will be used as a prefix of the pods. Note as well, that the RC contains a containen named `pingcontainer` which is the name we gave it in the rc definition:
+
+        containers:
+        - name: pingcontainer
+
+Finally, let's look at the service.
+
+        -> % kubectl get service
+        NAME          LABELS                                    SELECTOR            IP(S)         PORT(S)
+        kubernetes    component=apiserver,provider=kubernetes   <none>              10.0.0.1      443/TCP
+        pingsvcname   name=pingservice                          name=pingpodlabel   10.0.94.219   80/TCP
+
+We can see that the service is called `pingsvcname`, that it has a label (remember labels are our grouping strategy), and that the selector is a label `name=pingpodlabel`, this label is a pod label, not a rc label.
