@@ -2,12 +2,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ping
+  name: pingpod
   labels:
-    name: ping
+    name: pingpodlabel
+
 spec:
   containers:
-  - name: ping
+  - name: pingcontainer
     image: ipedrazas/ping
     ports:
     - containerPort: 8080
