@@ -1,0 +1,15 @@
+# Pod definition
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podalone
+  labels:
+    name: thispodisalone
+
+spec:
+  containers:
+  - name: apodalone
+    image: ipedrazas/podalone
+   env:
+      - name: REDIS_HOST
+        value: "redis"
