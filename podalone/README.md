@@ -1,11 +1,13 @@
 # Podalone
 ## Pods, replication controllers and services
 
-"Can you have a pod without replication controller and service?"
+**"Can you have a pod without replication controller and service?"**
 
-Yes, you can... but!
+Of course you can, but you have to understand what's going on.
 
-Replication controllers are in charge of making sure that the expected pods are running. Services allow pods and external services to talk to each other.
+Replication controllers are in charge of making sure that the expected pods are running. If you don't want RCs to be responsible for mantaining the pods, and their containers, you need to implement your own logic that will do that.
+
+Services allow pods and external services to talk to each other. 
 
 Imagine a pod that does a task and then it dies... Do we want to have a pod?  a RC? or a service?
 
