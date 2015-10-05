@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rccanary
+  labels:
+    name: canary
+spec:
+  replicas: 1
+  selector:
+    name: simpleapi
+  template:
+    metadata:
+      labels:
+        name: simpleapi
+        version: 2.0
+    spec:
+      containers:
+      - name: simpleapi
+        image: ipedrazas/simpleapi:2.0
+        ports:
+        - containerPort: 8080
