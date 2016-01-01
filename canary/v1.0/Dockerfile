@@ -1,6 +1,6 @@
 FROM scratch
 MAINTAINER Ivan Pedrazas <ipedrazas@gmail.com>
 
-ADD ping /
+ADD simpleapi /
 
 CMD ["/simpleapi"]
